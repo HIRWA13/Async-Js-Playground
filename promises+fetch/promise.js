@@ -1,72 +1,85 @@
-// function getWeather() {
-//     return new Promise((resolve, reject) => {
-//         resolve('sunny')
-//     })
-// }
-// const promise = getWeather();
-// promise.then(function(data){
-//     console.log(data)
-// })
+// 
 
-const stocks = {
-    fruits: ["strawberry", "grapes", "banana", "apple",],
-    liquid: ["water", "ice"],
-    holder: ["cone", "cup", "stick"],
-    toppings: ["chocolate", "peanuts"]
+const stock = {
+    floar: ["strawberry", "lemon"],
+    liquid: ["water", "juice"],
+    fruits: ["mango", "banana", "pineapple"],
+    container: ["glass", "bottle"],
+    maker: ["Brender"]
 }
 
-let is_shop_open = true;
+const is_stock_open = true
 
-let order = (time, work) => {
-    return new Promise((resolve, reject)=>{
-        if(is_shop_open) {
-            setTimeout(() => {
-                resolve(work())
-            }, time);
+const makeJuice = () => {
+    return new Promise((resolve, reject)=> {
+        if(is_stock_open) {
+            resolve(console.log("Woooh the shop is opened"));
         } else {
-            reject(console.log("our shop is closed"))
+            reject(console.log("Oops! stock closed"))   
         }
     })
 }
 
-order(2000, ()=>console.log(`${stocks.fruits[0]} was selected`))
+makeJuice()
+.then(()=> {
+      return new Promise((resolve, reject)=>{
+        setTimeout(() => {
+            resolve("start taking orders")
+        }, 1000);
+      })
+    })
 
 .then(()=> {
-    return order(0, ()=> console.log("production has started"))
-})
-
+       return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("gather materials")
+        }, 2000);
+       })
+    })
 .then(()=> {
-    return order(2000, ()=> console.log(`the fruits has been chopped`))
-})
-
+       return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(`cut ${stock.fruits[0]}, ${stock.fruits[1]} and ${stock.fruits[2]}`)
+        }, 5000);
+       })
+    })
 .then(()=> {
-    return order(1000, ()=> console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was rejected`))
-})
-
-.then(()=> {
-    return order(1000, ()=> console.log(`start the machine`))
-})
-
-.then(()=> {
-    return order(2000, ()=> console.log(`Icecream placed on the ${stocks.holder[0]}`))
-})
-
-.then(()=> {
-    return order(3000, ()=> console.log(`${stocks.toppings[0]} was selected`))
-})
-
-.then(()=> {
-    return order(2000, ()=> console.log("Icecream served"))
-})
-
-.catch(()=> {
-   setTimeout(() => {
-    console.log("yallaaah the customer left")
-   }, 2000);
-})
-
-.finally(()=> {
-    setTimeout(() => {
-        console.log("the shop closed")
-    }, 6000);
-})
+       return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(`put the fruits in ${stock.maker[0]}`)
+        }, 2000);
+       })
+    })
+    // .then(()=>{
+    //     setTimeout(() => {
+    //         console.log(`add the ${stock.floar[0]} and ${stock.floar[1]} floars`)
+    //     }, 1000);
+    // })
+    // .then(()=> {
+    //     setTimeout(() => {
+    //         console.log(`add ${stock.liquid[0]}`)
+    //     }, 3000);
+    // })
+    // .then(()=> {
+    //     setTimeout(() => {
+    //         console.log("turn on the Brender")
+    //     }, 1000);
+    // })
+    // .then(()=>{
+    //     setTimeout(() => {
+    //         console.log("wait for the Brender to finish the mixing")
+    //     }, 3000);
+    // })
+    // .then(()=>{
+    //     setTimeout(() => {
+    //         console.log(`put the juice in the ${stock.container[0]}`)
+    //     }, 2000);
+    // })
+    // .then(()=>{
+    //     setTimeout(() => {
+    //         console.log("serve the juice")
+    //     }, 3000);
+    // })
+    .catch(()=> {
+        console.log("error")
+    })

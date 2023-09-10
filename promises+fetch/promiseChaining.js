@@ -70,7 +70,7 @@ order(2000, ()=>console.log(`${stocks.fruits[0]} was selected`))
 })
 
 .then(()=> {
-    return order(1000, ()=> console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was rejected`))
+    return order(1000, ()=> console.log(`${stocks.liquid[0]} and ${stocks.liquid[1]} was selected`))
 })
 
 .then(()=> {
