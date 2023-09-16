@@ -42,3 +42,25 @@ promisfifyTimeout(5) // will reject after 5 seonds
 
 
 // 4. create a chain of promise using the then method:
+
+new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("I am")
+    }, 1000);
+}).then((result) => {
+    console.log(result)
+    return new Promise((resolve, reject) => {
+       setTimeout(() => {
+        resolve("Junior")
+       }, 1000);
+    })
+}).then((result) => {
+    console.log(result)
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Hirwa")
+        }, 1000);
+    })
+}).then((result) => {
+    console.log(result)
+})
