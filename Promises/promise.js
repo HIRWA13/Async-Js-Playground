@@ -26,4 +26,3 @@ const promisy = new Promise(function(resolve, rejec){
  */
 
 // a promise which has ended, either resolved or rejected can either be called as fulfilled or settled.
-
