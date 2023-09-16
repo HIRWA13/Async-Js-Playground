@@ -26,3 +26,10 @@ const promisy = new Promise(function(resolve, rejec){
  */
 
 // a promise which has ended, either resolved or rejected can either be called as fulfilled or settled.
+
+// why promises???
+/**
+ * Promises were introduced in JS by the time when developers were using callbacks to perform asynchronous operations and in this time it was hard for them to perform many tasks that were related and also they could find themselves trapped in the so called callback hell or the pyramid of DOOMand thi is why promises came
+ * 
+ * Promises makes executing tasks that are related and also they give us the flexibility when it comes to writting and reading promise codes
+ */
