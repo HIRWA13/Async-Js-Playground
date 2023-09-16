@@ -29,6 +29,12 @@ function duplicateStr(str) {
 
 // duplicateStr("abc") "aabbcc"
 
-// 4.write a function called atleastTwo that receives an array and a callback function as its arguments. if atleast two elements fro the array return a truth value when passed as argument atleastTwo should return true. if there aren't atleast two elements from the array that returns true when passed in the callback, atleastTwo should return false
+// 4. write a function that takes a callback and then invokes it after a delay of 2 seconds:
 
-// solution comming soon:
+function invokeCb(cb) {
+   setTimeout(cb, 5000)
+}
+
+invokeCb(()=> {
+    console.log('callback invoked')
+})
