@@ -1,42 +1,31 @@
 const urls = [
-    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/user',
     'https://jsonplaceholder.typicode.com/todos'
 ]
 
 const fetchUserTodos = async (endpoints) => {
-    const result = [];
-    for(const url of endpoints) {
-        result.push(fetch(url))
-    }
-    const [prom1, prom2] = await Promise.all(result)
-    const users = await prom1.json()
-    console.log(users.length)
-    // console.log(users)
-    const todos = await prom2.json()
-    // console.log(todos)
-    // the todo has to be in the same user with matching id
-
-    // for(const user of users) {
-    //     console.log(user)
-    // }
-    // for(const todo of todos) {
-    //     console.log(todo)
-    // }
-
-    let usersWithTodos = {};
-    // iterate through the todos array and group them with id:
-
-    todos.forEach(todo => {
-        const userId = todo.userId;
-        if(!usersWithTodos[userId]) {
-            usersWithTodos = {
-                todos: [],
-                ...users.find(user => user.id === userId),
+   try{
+        const data = []
+        for (url of endpoints) {
+            const response = fetch(url)
+            if((await response).status === 200) {
+                data.push(response)
+            } else {
+                console.log(`the link : ${url} seems to be broken somehow - status = ${(await response).status}`)
             }
         }
-        usersWithTodos[userId].todos.push(todo.title)
-    })
-    console.log(usersWithTodos)
+        const [userResults, todosResults] = await Promise.all(data)
+        const users = await userResults.json();
+        const todos = await todosResults.json();
+
+        users.map(el => (el.todos = todos.filter(todo => todo.userId === el.id)))
+
+        return users
+   } catch(err) {
+        console.log('unexpected error occured today')
+   }
 }
 
+
 fetchUserTodos(urls)
+    .then((val) => console.log(val))
